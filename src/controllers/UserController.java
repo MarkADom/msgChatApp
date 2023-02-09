@@ -16,6 +16,7 @@ import model.services.Server;
 import javafx.fxml.FXML;
 
 import javax.swing.text.html.ImageView;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -203,11 +204,18 @@ public class UserController {
         loginNotifier.setOpacity(0);
         userName.setText("");
         passWord.setText("");
-
-        
     }
 
-
+    @FXML
+    private void handleMouseEvent(MouseEvent event) {
+        if (event.getSource()==btnBack) {
+            new FadeIn(pnSignIn).play();
+            pnSignIn.toFront();
+        }
+        regName.setText("");
+        regPass.setText("");
+        regEmail.setText("");
+    }
 }
 
 
