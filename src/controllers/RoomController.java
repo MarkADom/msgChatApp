@@ -7,6 +7,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -97,6 +98,23 @@ public class RoomController extends Thread implements Initializable {
         }
     }
 
+    public void handleProfileBtn(ActionEvent event){
+        if (event.getSource().equals(profileBtn) && !toggleProfile) {
+            new  FadeIn(profile).play();
+            profile.toFront();
+            chat.toBack();
+            toggleProfile = true;
+            toggleChat = false;
+            profileBtn.setText("Back");
+            setProfile();
+        } else if (event.getSource().equals(profileBtn) && toggleProfile) {
+            new FadeIn(chat).play();
+            chat.toFront();
+            toggleProfile = false;
+            toggleChat = false;
+            profileBtn.setText("Profile");
+        }
+    }
 
 
 
