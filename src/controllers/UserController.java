@@ -137,8 +137,17 @@ public class UserController {
         return true;
     }
 
+    private void makeDefault(){
+        regName.setText("");
+        regPass.setText("");
+        regEmail.setText("");
+        regFirstName.setText("");
+        regPhoneNo.setText("");
+        male.setSelected(true);
+        setOpacity(controlRegLabel, checkEmail, nameExists);
+    }
 
-    
+
 
 }
 
