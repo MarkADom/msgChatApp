@@ -1,13 +1,12 @@
 package model.services;
-
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
-    private static ArrayList<ClientHandler> clients = new ArrayList<>(ClientHandler);
+
+    private static ArrayList<ClientHandler> clients = new ArrayList<ClientHandler>();
 
     public static void main(String[] args) {
         ServerSocket serverSocket;
