@@ -1,16 +1,21 @@
 package controllers;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import model.entities.User;
 import model.services.ClientHandler;
 import model.services.Server;
 import javafx.fxml.FXML;
 
 import javax.swing.text.html.ImageView;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserController {
@@ -167,6 +172,21 @@ public class UserController {
         }
     }
 
+    public void changeWindow() {
+        try {
+            Stage stage = (Stage) userName.getScene().getWindow();
+            Parent root = FXMLLoader.load(this.getClass().getResource("room.fxml"));
+            stage.setScene(new Scene(root,330,560));
+            stage.setTitle(username + "");
+            stage.setOnCloseRequest(event -> {
+                System.exit(0);
+            });
+            stage.setResizable(false)
+            stage.show(); ;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
 }
 
