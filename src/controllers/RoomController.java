@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import model.entities.User;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -116,6 +117,18 @@ public class RoomController extends Thread implements Initializable {
         }
     }
 
+    public void setProfile(){
+        for (User user : users) {
+            if (UserController.username.equalsIgnoreCase(user.name)){
+                fullName.setText(user.email);
+                fullName.setOpacity(1);
+                email.setText(user.email);
+                email.setOpacity(1);
+                phoneNo.setText(user.phoneNo);
+                gender.setText(user.gender);
+            }
+        }
+    }
 
 
 
