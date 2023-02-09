@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -174,8 +175,8 @@ public class RoomController extends Thread implements Initializable {
         }
     }
 
-    public void saveImage(){
-        if (saveControl){
+    public void saveImage() {
+        if (saveControl) {
             try {
                 BufferedImage bufferedImage = ImageIO.read(filePath);
                 Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -183,15 +184,26 @@ public class RoomController extends Thread implements Initializable {
                 showProPic.setFill(new ImagePattern(image));
                 saveControl = false;
                 fileChoosePath.setText("");
-            }catch (IOException e){
+            } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
         }
     }
-
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        showProPic.setStroke(Color.valueOf("#90a4ae"));
+        Image image;
+        if (UserController.gender.equalsIgnoreCase("Male")) {
+            image = new Image("icons/user.png", false);
+        }else {
+            image = new Image("icons/female.png", false);
+            proImage.setImage(image);
+            }
+        showProPic.setFill(new ImagePattern(image));
+        clientName.setText(UserController.username);
+        connectSocket();
     }
+
 }
+
