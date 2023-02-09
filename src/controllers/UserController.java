@@ -66,16 +66,16 @@ public class UserController {
                 && !regEmail.getText().equalsIgnoreCase("")
                 && !regFirstName.getText().equalsIgnoreCase("")
                 && !regPhoneNo.getText().equalsIgnoreCase("")
-                && (male.isSelected()||female.isSelected())){
-            if(checkUser(regName.getText())){
-                if (checkEmail(regEmail.getText())){
+                && (male.isSelected() || female.isSelected())) {
+            if (checkUser(regName.getText())) {
+                if (checkEmail(regEmail.getText())) {
                     User newUser = new User();
                     newUser.name = regName.getText();
                     newUser.password = regPass.getText();
                     newUser.email = regEmail.getText();
-                    newUser.fullName= regFirstName.getText();
+                    newUser.fullName = regFirstName.getText();
                     newUser.phoneNo = regPhoneNo.getText();
-                    if (male.isSelected()){
+                    if (male.isSelected()) {
                         newUser.gender = "Male";
                     } else {
                         newUser.gender = "Female";
@@ -84,28 +84,28 @@ public class UserController {
                     goBack.setOpacity(1);
                     success.setOpacity(1);
                     makeDefault();
-                    if (controlRegLabel.getOpacity()==1){
+                    if (controlRegLabel.getOpacity() == 1) {
                         controlRegLabel.setOpacity(0);
                     }
-                    if (nameExists.getOpacity() == 1){
+                    if (nameExists.getOpacity() == 1) {
                         nameExists.setOpacity(0);
                     }
-                }else {
+                } else {
                     checkEmail.setOpacity(1);
                     setOpacity(nameExists, goBack, controlRegLabel, success);
                 }
-            }else {
+            } else {
                 nameExists.setOpacity(1);
                 setOpacity(success, goBack, controlRegLabel, checkEmail);
             }
-        }else {
+        } else {
             controlRegLabel.setOpacity(1);
             setOpacity(success, goBack, nameExists, checkEmail);
         }
     }
 
     private void setOpacity(Label a, Label b, Label c, Label d) {
-        if (a.getOpacity()==1||b.getOpacity()==1||c.getOpacity()==1||d.getOpacity()==1){
+        if (a.getOpacity() == 1 || b.getOpacity() == 1 || c.getOpacity() == 1 || d.getOpacity() == 1) {
             a.setOpacity(0);
             b.setOpacity(0);
             c.setOpacity(0);
@@ -113,7 +113,11 @@ public class UserController {
         }
     }
 
-
-
+    private void setOpacity(Label controlRegLabel, Label checkEmail, Label nameExists) {
+        controlRegLabel.setOpacity(0);
+        checkEmail.setOpacity(0);
+        nameExists.setOpacity(0);
+    }
+    
 
 }
