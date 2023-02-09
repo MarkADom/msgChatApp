@@ -12,6 +12,7 @@ import model.entities.User;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -153,7 +154,7 @@ public class RoomController extends Thread implements Initializable {
 
     //Changing profile picture
 
-    public  boolean saveControl = false;
+    public boolean saveControl = false;
 
     public void chooseImageButton(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -162,6 +163,12 @@ public class RoomController extends Thread implements Initializable {
         this.filePath = fileChooser.showOpenDialog(stage);
         fileChoosePath.setText(filePath.getPath());
         saveControl = true;
+    }
+
+    public void sendMessageByKey(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            send();
+        }
     }
 
 
