@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -176,17 +177,36 @@ public class UserController {
         try {
             Stage stage = (Stage) userName.getScene().getWindow();
             Parent root = FXMLLoader.load(this.getClass().getResource("room.fxml"));
-            stage.setScene(new Scene(root,330,560));
+            stage.setScene(new Scene(root, 330, 560));
             stage.setTitle(username + "");
             stage.setOnCloseRequest(event -> {
                 System.exit(0);
             });
-            stage.setResizable(false)
-            stage.show(); ;
-        }catch (IOException e){
+            stage.setResizable(false);
+            stage.show();
+            ;
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleButtonAction (ActionEvent event) {
+        if (event.getSource().equals(btnSignUp)) {
+            new FadeIn(pnSignUp).play();
+            pnSignUp.toFront();
+        }
+        if (event.getSource().equals(getStarted)) {
+            new FadeIn(pnSignIn).play();
+            pnSignIn.toFront();
+        }
+        loginNotifier.setOpacity(0);
+        userName.setText("");
+        passWord.setText("");
+
+        
+    }
+
 
 }
 
