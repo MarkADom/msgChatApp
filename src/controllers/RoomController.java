@@ -7,6 +7,11 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -48,6 +53,23 @@ public class RoomController extends Thread implements Initializable {
     private File filePath;
     public boolean toggleChat = false, toggleProfile = false;
 
+    BufferedReader reader;
+    PrintWriter writer;
+    Socket socket;
+
+    public void connectSocket() {
+        try {
+            socket = new Socket("localhost",8889);
+            System.out.println("Socket is connected with server!");
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            writer = new PrintWriter(socket.getOutputStream(), true);
+            this.start();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
 
 
 
