@@ -8,5 +8,5 @@ public class User {
     public String email;
     public String gender;
     public String phone;
-    
+
 }
