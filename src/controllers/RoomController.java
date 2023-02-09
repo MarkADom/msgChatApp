@@ -9,6 +9,7 @@ import model.entities.User;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -127,6 +128,13 @@ public class RoomController extends Thread implements Initializable {
                 phoneNo.setText(user.phoneNo);
                 gender.setText(user.gender);
             }
+        }
+    }
+
+    public void handleSendEvent(MouseEvent event) {
+        send();
+        for (User user: users){
+            System.out.println(user.name);
         }
     }
 
