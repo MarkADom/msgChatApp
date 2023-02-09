@@ -118,6 +118,28 @@ public class UserController {
         checkEmail.setOpacity(0);
         nameExists.setOpacity(0);
     }
+
+    private boolean checkUser(String username){
+        for (User user: users){
+            if(user.name.equalsIgnoreCase(username)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkEmail(String email){
+        for(User user : users){
+            if (user.email.equalsIgnoreCase(email)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     
 
 }
+
+
