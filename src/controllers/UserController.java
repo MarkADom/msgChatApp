@@ -119,17 +119,17 @@ public class UserController {
         nameExists.setOpacity(0);
     }
 
-    private boolean checkUser(String username){
-        for (User user: users){
-            if(user.name.equalsIgnoreCase(username)) {
+    private boolean checkUser(String username) {
+        for (User user : users) {
+            if (user.name.equalsIgnoreCase(username)) {
                 return false;
             }
         }
         return true;
     }
 
-    private boolean checkEmail(String email){
-        for(User user : users){
+    private boolean checkEmail(String email) {
+        for (User user : users) {
             if (user.email.equalsIgnoreCase(email)) {
                 return false;
             }
@@ -137,7 +137,7 @@ public class UserController {
         return true;
     }
 
-    private void makeDefault(){
+    private void makeDefault() {
         regName.setText("");
         regPass.setText("");
         regEmail.setText("");
@@ -147,6 +147,25 @@ public class UserController {
         setOpacity(controlRegLabel, checkEmail, nameExists);
     }
 
+    public void login() {
+        username = userName.getText();
+        password = passWord.getText();
+        boolean login = false;
+        for (User x : users) {
+            if (x.name.equalsIgnoreCase(username) && x.password.equalsIgnoreCase(password)) {
+                login = true;
+                loggedInUser.add(x);
+                System.out.println(x.name);
+                gender = x.gender;
+                break;
+            }
+        }
+        if (login) {
+            changeWindow();
+        } else {
+            loginNotifier.setOpacity(1);
+        }
+    }
 
 
 }
