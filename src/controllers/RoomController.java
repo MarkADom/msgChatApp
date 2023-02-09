@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -62,12 +63,12 @@ public class RoomController extends Thread implements Initializable {
 
     public void connectSocket() {
         try {
-            socket = new Socket("localhost",8889);
+            socket = new Socket("localhost", 8889);
             System.out.println("Socket is connected with server!");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
             this.start();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -85,7 +86,7 @@ public class RoomController extends Thread implements Initializable {
                     fulmsg.append(tokens[i])
                 }
                 System.out.println(fulmsg);
-                if (cmd.equalsIgnoreCase(UserController.username + ":")){
+                if (cmd.equalsIgnoreCase(UserController.username + ":")) {
                     continue;
                 } else if (fulmsg.toString().equalsIgnoreCase("bye")) {
                     break;
@@ -95,14 +96,14 @@ public class RoomController extends Thread implements Initializable {
             reader.close();
             writer.close();
             socket.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void handleProfileBtn(ActionEvent event){
+    public void handleProfileBtn(ActionEvent event) {
         if (event.getSource().equals(profileBtn) && !toggleProfile) {
-            new  FadeIn(profile).play();
+            new FadeIn(profile).play();
             profile.toFront();
             chat.toBack();
             toggleProfile = true;
@@ -118,9 +119,9 @@ public class RoomController extends Thread implements Initializable {
         }
     }
 
-    public void setProfile(){
+    public void setProfile() {
         for (User user : users) {
-            if (UserController.username.equalsIgnoreCase(user.name)){
+            if (UserController.username.equalsIgnoreCase(user.name)) {
                 fullName.setText(user.email);
                 fullName.setOpacity(1);
                 email.setText(user.email);
@@ -133,11 +134,20 @@ public class RoomController extends Thread implements Initializable {
 
     public void handleSendEvent(MouseEvent event) {
         send();
-        for (User user: users){
+        for (User user : users) {
             System.out.println(user.name);
         }
     }
 
+    public void send() {
+        String msg = msgField.getText();
+        writer.println(UserController.username + ": " + msg);
+        msgRoom.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+        msgRoom.appendText("");
+        if (msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
+            System.exit(0);
+        }
+    }
 
 
     @Override
