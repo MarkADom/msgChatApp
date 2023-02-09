@@ -69,15 +69,33 @@ public class RoomController extends Thread implements Initializable {
         }
     }
 
-    
-
-
-
-
-
-
-
-
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                String msg = reader.readLine();
+                String[] tokens = msg.split(" ");
+                String cmd = tokens[0];
+                System.out.println(cmd);
+                StringBuilder fulmsg = new StringBuilder();
+                for (int i = 1; i < tokens.length; i++) {
+                    fulmsg.append(tokens[i])
+                }
+                System.out.println(fulmsg);
+                if (cmd.equalsIgnoreCase(UserController.username + ":")){
+                    continue;
+                } else if (fulmsg.toString().equalsIgnoreCase("bye")) {
+                    break;
+                }
+                msgRoom.appendText(msg + "\n");
+            }
+            reader.close();
+            writer.close();
+            socket.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 
