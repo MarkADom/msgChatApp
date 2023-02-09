@@ -5,15 +5,18 @@ import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.entities.User;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -168,6 +171,21 @@ public class RoomController extends Thread implements Initializable {
     public void sendMessageByKey(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             send();
+        }
+    }
+
+    public void saveImage(){
+        if (saveControl){
+            try {
+                BufferedImage bufferedImage = ImageIO.read(filePath);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                proImage.setImage(image);
+                showProPic.setFill(new ImagePattern(image));
+                saveControl = false;
+                fileChoosePath.setText("");
+            }catch (IOException e){
+                System.err.println(e.getMessage());
+            }
         }
     }
 
