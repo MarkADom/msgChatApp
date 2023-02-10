@@ -254,8 +254,9 @@ public class RoomController extends Thread implements Initializable {
     chooses an image using the chooseImageButton method. The saveControl variable is used to ensure
     that the image is saved only when the user has selected an image. If the user has not selected
     an image, the code does not do anything.
-    The code uses the ImageIO class from the Java Image I/O API to read the image file and the SwingFXUtils
-    class from the JavaFX API to convert the image from a BufferedImage to a javafx.scene.image.Image.
+    The code uses the ImageIO class from the Java Image I/O API to read the image file and the
+    SwingFXUtils class from the JavaFX API to convert the image from a BufferedImage to a
+    javafx.scene.image.Image.
      */
 
     public void saveImage() {
