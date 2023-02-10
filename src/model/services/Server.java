@@ -11,7 +11,7 @@ public class Server {
     connections from clients. For each incoming connection, it creates a new instance of
     the ClientHandler class, passes the connected Socket and the list of connected clients
     to it, and starts it as a new thread.
-    
+
      */
 
     private static ArrayList<ClientHandler> clients = new ArrayList<ClientHandler>();
