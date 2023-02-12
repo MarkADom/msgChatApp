@@ -1,5 +1,6 @@
 package controllers;
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
@@ -23,8 +24,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static controllers.UserController.loggedInUser;
-import static controllers.UserController.users;
+import static controllers.UserController.*;
 
     /*
     This is a JavaFX Controller class that is used to handle the behavior of the chat room interface.
@@ -60,6 +60,8 @@ public class RoomController extends Thread implements Initializable {
     public Pane profile;
     @FXML
     public Button profileBtn;
+    @FXML
+    public TextField fileChoosePath;
     @FXML
     public TextField proImage;
     @FXML
@@ -118,7 +120,7 @@ public class RoomController extends Thread implements Initializable {
                 System.out.println(cmd);
                 StringBuilder fulmsg = new StringBuilder();
                 for (int i = 1; i < tokens.length; i++) {
-                    fulmsg.append(tokens[i])
+                    fulmsg.append(tokens[i]);
                 }
                 System.out.println(fulmsg);
                 if (cmd.equalsIgnoreCase(UserController.username + ":")) {
@@ -177,8 +179,8 @@ public class RoomController extends Thread implements Initializable {
     public void setProfile() {
         for (User user : users) {
             if (UserController.username.equalsIgnoreCase(user.name)) {
-                fullName.setText(user.email);
-                fullName.setOpacity(1);
+                fullName.setText(user.fullName);
+                fullName.setOpavity(1);
                 email.setText(user.email);
                 email.setOpacity(1);
                 phoneNo.setText(user.phoneNo);
