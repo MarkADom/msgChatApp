@@ -1,6 +1,6 @@
 # msgChatApp
 
-A simple Java Multi User Chat application using Java Socket Programming.
+A simple Java Multi User Chat application using Java Socket Programming and JavaFX.
 
 ## Description 
 
